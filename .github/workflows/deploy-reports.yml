@@ -1,0 +1,34 @@
+name: Generate Test Reports on PR
+
+on:
+    push:
+     branches:
+      - main
+    pull_request:
+      branches:
+        - main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Tests
+        run: npm run test
+
+      - name: Generate Allure Report
+        run: |
+          npm run clean:allure 
+          npm run test
+          npm run allure:generate
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./allure-report
