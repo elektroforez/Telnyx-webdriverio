@@ -20,6 +20,7 @@ jobs:
 
       - name: Run Tests
         run: npm run test
+        continue-on-error: true
 
       - name: Generate Allure Report
         run: |
