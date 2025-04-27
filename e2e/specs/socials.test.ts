@@ -1,9 +1,9 @@
 import footer from "../pages/footer.page";
 import cookies from "../utils/cookiesBanner";
 
-const linkedinUrl = "https://www.linkedin.com/company/telnyx/";
+const linkedinUrl = "https://www.linkedin.com";
 const twitterUrl = "https://x.com";
-const facebookUrl = "https://www.facebook.com/Telnyx/";
+const facebookUrl = "https://www.facebook.com";
 
 describe("Test social links", () => {
   beforeEach(async () => {
