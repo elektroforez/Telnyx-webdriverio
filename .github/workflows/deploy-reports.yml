@@ -18,14 +18,15 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      - name: Clean Allure results
+        run: npm run clean:allure
+
       - name: Run Tests
         run: npm run test
         continue-on-error: true
 
       - name: Generate Allure Report
-        run: |
-          npm run clean:allure 
-          npm run allure:generate
+        run: npm run allure:generate
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
