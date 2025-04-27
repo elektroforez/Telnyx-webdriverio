@@ -1,1 +1,1 @@
-{"total":0,"items":[]}
+{"total":3,"items":[{"uid":"a4992b1a0faa7ca3b2c18730fb7ea4e2","name":"Contact Us page tests","statistic":{"failed":0,"broken":1,"skipped":0,"passed":29,"unknown":0,"total":30}},{"uid":"5161c3396970e8b20047493c165b5937","name":"Messaging pricing form test","statistic":{"failed":0,"broken":1,"skipped":0,"passed":14,"unknown":0,"total":15}},{"uid":"0e06909bcd2b6bf4846d4780e9bc2832","name":"Test social links","statistic":{"failed":0,"broken":1,"skipped":0,"passed":8,"unknown":0,"total":9}}]}
