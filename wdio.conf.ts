@@ -12,27 +12,20 @@ export const config: WebdriverIO.Config = {
 
   capabilities: [
     {
-      browserName: "chrome",
+      browserName: process.env.BROWSER || "chrome",
       "goog:chromeOptions": {
-        args: [
-          "--headless",
-          "--no-sandbox",
-          "--disable-gpu",
-          "--window-size=1920,1080",
-        ],
+        args:
+          process.env.HEADLESS === "true"
+            ? [
+                "--headless",
+                "--disable-gpu",
+                "--no-sandbox",
+                "--disable-dev-shm-usage",
+              ]
+            : [],
       },
-    },
-    {
-      browserName: "firefox",
       "moz:firefoxOptions": {
-        args: ["--headless"],
-        log: { level: "fatal" },
-      },
-    },
-    {
-      browserName: "MicrosoftEdge",
-      "ms:edgeOptions": {
-        args: ["--headless", "--disable-gpu"],
+        args: process.env.HEADLESS === "true" ? ["-headless"] : [],
       },
     },
   ],
