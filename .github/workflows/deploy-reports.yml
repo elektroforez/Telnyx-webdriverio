@@ -25,7 +25,8 @@ jobs:
         run: |
           docker run --rm \
             -v ${{ github.workspace }}/allure-results:/usr/src/app/allure-results \
-            telnyx-tests
+            telnyx-tests        
+        continue-on-error: true
 
       - name: Generate Allure Report
         run: |
