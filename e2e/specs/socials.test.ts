@@ -11,16 +11,10 @@ describe("Test social links", () => {
     await cookies.closeBanner();
   });
   it("Redirect on Linkedin link in footer TX-TC-19", async () => {
-    const oldTabs = await browser.getWindowHandles();
     await footer.clickLinkedinLink();
-    const newTabs = await browser.getWindowHandles();
-    const newTab = newTabs.find((tab) => !oldTabs.includes(tab));
+    const tabs = await browser.getWindowHandles();
 
-    if (!newTab) {
-      throw new Error("No new tabs were opened");
-    }
-
-    await browser.switchToWindow(newTab);
+    await browser.switchToWindow(tabs[tabs.length - 1]);
 
     await browser.waitUntil(
       async () => (await browser.getUrl()) !== "about:blank",
@@ -32,16 +26,10 @@ describe("Test social links", () => {
     await browser.closeWindow();
   });
   it("Redirect on Facebook link in footer TX-TC-20", async () => {
-    const oldTabs = await browser.getWindowHandles();
     await footer.clickFacebookLink();
-    const newTabs = await browser.getWindowHandles();
-    const newTab = newTabs.find((tab) => !oldTabs.includes(tab));
+    const tabs = await browser.getWindowHandles();
 
-    if (!newTab) {
-      throw new Error("No new tabs were opened");
-    }
-
-    await browser.switchToWindow(newTab);
+    await browser.switchToWindow(tabs[tabs.length - 1]);
 
     await browser.waitUntil(
       async () => (await browser.getUrl()) !== "about:blank",
@@ -53,16 +41,10 @@ describe("Test social links", () => {
     await browser.closeWindow();
   });
   it("Redirect on Twitter link in footer TX-TC-21", async () => {
-    const oldTabs = await browser.getWindowHandles();
     await footer.clickTwitterLink();
-    const newTabs = await browser.getWindowHandles();
-    const newTab = newTabs.find((tab) => !oldTabs.includes(tab));
+    const tabs = await browser.getWindowHandles();
 
-    if (!newTab) {
-      throw new Error("No new tabs were opened");
-    }
-
-    await browser.switchToWindow(newTab);
+    await browser.switchToWindow(tabs[tabs.length - 1]);
 
     await browser.waitUntil(
       async () => (await browser.getUrl()) !== "about:blank",

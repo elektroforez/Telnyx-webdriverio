@@ -154,8 +154,8 @@ class ContactPage extends BasePage {
   }
 
   async submitForm() {
-    await this.submitButton.waitForClickable();
     await this.submitButton.scrollIntoView();
+    await this.submitButton.waitForClickable();
     await this.submitButton.click();
   }
 }
