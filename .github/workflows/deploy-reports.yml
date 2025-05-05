@@ -1,0 +1,40 @@
+name: Generate Test Reports on PR
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: docker build -t telnyx-tests .
+
+      - name: Run Tests inside Docker
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}/allure-results:/usr/src/app/allure-results \
+            telnyx-tests        
+        continue-on-error: true
+
+      - name: Generate Allure Report
+        run: |
+          npm install -g allure-commandline --save-dev
+          npx allure generate ./allure-results --clean -o ./allure-report
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
